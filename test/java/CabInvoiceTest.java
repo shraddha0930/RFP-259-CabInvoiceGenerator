@@ -52,4 +52,14 @@ public class CabInvoiceTest {
         Assert.assertEquals(expectedInvoice1,actualInvoice1);
         Assert.assertEquals(expectedInvoice2,actualInvoice2);
     }
+
+    @Test
+    public void givenUserIdAndHavingTypeOfRides_ShouldReturnInvoice(){
+        RideRepository rideRepository = new RideRepository();
+        Ride[] ride1 = {new Ride(12,3,"Normal"),new Ride(13.4,4.0,"Premium"),new Ride(17,8,"Premium")};
+        rideRepository.addRides(1,ride1);
+        Invoice expectedInvoice1 = new Invoice(3,603,201);
+        Invoice actualInvoice1 = rideRepository.getInvoiceFromUserId(1);
+        Assert.assertEquals(expectedInvoice1,actualInvoice1);
+    }
 }

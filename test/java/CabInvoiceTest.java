@@ -1,4 +1,5 @@
 import org.example.CabInvoice;
+import org.example.Invoice;
 import org.example.Ride;
 import org.junit.Test;
 import org.testng.Assert;
@@ -25,5 +26,13 @@ public class CabInvoiceTest {
         Ride[] rides = {new Ride(10.0,4.0),new Ride(5.0,5.0),new Ride(0.1,1.0)};
         double aggregateTotalFare = cabInvoice.calculateTotalFare(rides);
         Assert.assertEquals(164.0,aggregateTotalFare);
+    }
+    @Test
+    public void givenMultipleRides_ShouldReturnInvoice(){
+        CabInvoice cabInvoice = new CabInvoice();
+        Ride[] rides = {new Ride(10.0,4.0),new Ride(12.0,5.0),new Ride(0.1,1.0)};
+        Invoice expectedInvoice = new Invoice(3,234.0,78.0);
+        Invoice actualInvoice = cabInvoice.generateInvoice(rides);
+        Assert.assertEquals(expectedInvoice,actualInvoice);
     }
 }
